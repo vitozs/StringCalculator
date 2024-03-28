@@ -33,13 +33,6 @@ public class StringCalculatorTest {
         Assertions.assertEquals("Number expected but '\\n' found at position 6", exception.getMessage());
     }
     @Test
-    void testInvalidEndOfString(){
-        RuntimeException exception = Assertions.assertThrows(RuntimeException.class, ()->{
-            stringCalculator.add("1\n2,");
-        });
-        Assertions.assertEquals("Number expected but EOF found.", exception.getMessage());
-    }
-    @Test
     void testCustomDelimiters(){
         String result = stringCalculator.add("//;\n1;2");
         Assertions.assertEquals("3.0", result);
@@ -56,6 +49,13 @@ public class StringCalculatorTest {
             stringCalculator.add("//|\n1|2,4");
         });
         Assertions.assertEquals("'|' expected but '2,4' found at position 3.", exception.getMessage());
+    }
+    @Test
+    void testInvalidEndOfString(){
+        RuntimeException exception = Assertions.assertThrows(RuntimeException.class, ()->{
+            stringCalculator.add("1\n2,");
+        });
+        Assertions.assertEquals("Number expected but EOF found.", exception.getMessage());
     }
     @Test
     void testAddNegativeNumbers(){

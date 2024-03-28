@@ -3,31 +3,33 @@ import java.util.List;
 
 public class StringCalculator {
     ArrayBuilder arrayBuilder = new ArrayBuilder();
-    public String add(String s) {
-        List<String> list = arrayBuilder.getListOfNumbers(s);
+    public String add(String values) {
+        List<String> list = arrayBuilder.getListOfNumbers(values);
         return makeSum(list);
     }
-    private String makeSum(List<String> list){
+    public String makeSum(List<String> list){
         double result = 0;
         List<String> negativeNumbers = new ArrayList<>();
-        for(String number : list){
-            if(toDouble(number) < 0){
-                negativeNumbers.add(number);
+
+        for(String stringNumber : list){
+            double number = toDouble(stringNumber);
+            if(number < 0){
+                negativeNumbers.add(stringNumber);
             }
-            result += toDouble(number);
+            result += number;
         }
         checkIfNegativeNumber(negativeNumbers);
         return toString(result);
     }
-    private void checkIfNegativeNumber(List<String> negativeNumbers){
-        if(negativeNumbers.size() > 0){
+    public void checkIfNegativeNumber(List<String> negativeNumbers){
+        if(!negativeNumbers.isEmpty()){
             throw new RuntimeException("Negative not allowed: " + String.join(", ", negativeNumbers));
         }
     }
-    private Double toDouble(String number){
+    public Double toDouble(String number){
         return Double.valueOf(number);
     }
-    private String toString(Double number){
+    public String toString(Double number){
         return String.valueOf(number);
     }
 }

@@ -3,6 +3,7 @@ import java.util.List;
 public class StringValidator {
     public void checkCustomDelimiter(String delimiterFromString, List<String> arrayFormatted){
         int indexOfInvalidDelimiter = 0;
+
         for(String num : arrayFormatted){
             indexOfInvalidDelimiter += num.length();
             if(!num.matches("^-?\\d*\\.?\\d+$")){
